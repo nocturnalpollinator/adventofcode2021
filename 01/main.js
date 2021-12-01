@@ -4,7 +4,7 @@ var count = n.reduce((p, c, i) => [
     // Counting increments of each step
     p[0] + (c > n[i-1]), 
     // Counting the windows increments
-    i < 3 ? 0 : p[1] + (n.slice(i-2, i+1).reduce((a, b) => a + b) > n.slice(i-3, i).reduce((a, b) => a + b))
+    i < 3 ? 0 : p[1] + (n[i] > n[i-3])
 ], [0, 0]);
 
 console.log('Part I: ' + count[0], '\nPart II: ' + count[1])
