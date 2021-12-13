@@ -9,12 +9,12 @@ module.exports = {
         var winningBoards = []
         const bingoSum = (board, x) => board.filter((v, i) => i % gridWidth == x % gridWidth).reduce((p, c) => p + c) || board.slice(x - (x % gridWidth), (x - (x % gridWidth)) + gridWidth).reduce((p, c) => p + c)
 
-        numbers.forEach(n => {
+        numbers.forEach((n, ni) => {
             boards.forEach((b, i)  => {
                 var index = b.indexOf(n)
                 if (index !== -1) {
                     emptyBoards[i][index] = parseInt(n)
-                    if (!isNaN(bingoSum(emptyBoards[i], index)) && winningBoards.indexOf(i) == -1) {
+                    if (ni >= gridWidth && !isNaN(bingoSum(emptyBoards[i], index)) && winningBoards.indexOf(i) == -1) {
                         winningBoards.push(i)
                         lastWin = boards[i].reduce((p, c, j) => emptyBoards[i][j] == undefined ? p + parseInt(c) : p, 0) * n
                         firstWin = firstWin == 0 ? lastWin : firstWin
