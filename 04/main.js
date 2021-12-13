@@ -2,8 +2,8 @@ module.exports = {
     run: (glob) => {
         var file = glob.file.split('\n\n')
         var numbers = file.shift().split(',')
-        var gridWidth = file[0].split('\n')[0].split(' ').filter(x => x != '').length
         var boards = file.map(x => x.replace(/\n/g, ' ').split(' ').filter(x => x != ''))
+        var gridWidth = Math.sqrt(boards[0].length)
         var emptyBoards = Array.from(Array(boards.length), () => Array(gridWidth * gridWidth).fill(undefined))
         var firstWin = lastWin = 0
         var winningBoards = []
